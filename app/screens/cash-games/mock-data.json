@@ -1,0 +1,68 @@
+[
+  {
+    "id": "card-1",
+    "gameId": 1,
+    "bigBlind": 40.00,
+    "coinType": 1,
+    "playersCount": 4,
+    "minBuyIn": 200,
+    "smallBlind": 20.00,
+    "delay": 100,
+    "gameVariant": "hold'em"
+  },
+  {
+    "id": "card-2",
+    "gameId": 1,
+    "bigBlind": 500.00,
+    "coinType": 1,
+    "playersCount": 4,
+    "minBuyIn": 2500,
+    "smallBlind": 250.00,
+    "delay": 200,
+    "gameVariant": "hold'em"
+  },
+  {
+    "id": "card-3",
+    "gameId": 1,
+    "bigBlind": 200.00,
+    "coinType": 1,
+    "playersCount": 1,
+    "minBuyIn": 1000,
+    "smallBlind": 100.00,
+    "delay": 300,
+    "gameVariant": "hold'em"
+  },
+  {
+    "id": "card-4",
+    "gameId": 1,
+    "bigBlind": 30.00,
+    "coinType": 1,
+    "playersCount": 0,
+    "minBuyIn": 150,
+    "smallBlind": 15.00,
+    "delay": 400,
+    "gameVariant": "hold'em"
+  },
+  {
+    "id": "card-5",
+    "gameId": 17,
+    "bigBlind": 20.00,
+    "coinType": 1,
+    "playersCount": 0,
+    "minBuyIn": 100,
+    "smallBlind": 10.00,
+    "delay": 500,
+    "gameVariant": "plo"
+  },
+  {
+    "id": "card-6",
+    "gameId": 17,
+    "bigBlind": 4.00,
+    "coinType": 1,
+    "playersCount": 0,
+    "minBuyIn": 20,
+    "smallBlind": 2.00,
+    "delay": 600,
+    "gameVariant": "plo"
+  }
+]

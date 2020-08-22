@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Back" transform="translate(-6 -53)">
+    <rect id="TopBar_BG" width="24" height="24" transform="translate(6 53)" fill="none"/>
+    <path id="Icon_ionic-ios-arrow-back" data-name="Icon ionic-ios-arrow-back" d="M14.7,16.191,22.265,8.63a1.429,1.429,0,1,0-2.024-2.018l-8.574,8.568a1.426,1.426,0,0,0-.042,1.971l8.609,8.627a1.429,1.429,0,0,0,2.024-2.018Z" transform="translate(0.749 48.806)" fill="#fff"/>
+  </g>
+</svg>

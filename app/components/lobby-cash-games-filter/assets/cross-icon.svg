@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12">
+  <g id="Group_4124" transform="translate(-138 -127)">
+    <rect id="Rectangle_17836" width="12" height="12" rx="6"
+          transform="translate(138 127)" fill="#041b67"/>
+    <path id="Icon_ionic-md-close"
+          d="M13.523,8.123l-.6-.6-2.4,2.4-2.4-2.4-.6.6,2.4,2.4-2.4,2.4.6.6,2.4-2.4,2.4,2.4.6-.6-2.4-2.4Z"
+          transform="translate(133.477 122.477)" fill="#fff"/>
+  </g>
+</svg>

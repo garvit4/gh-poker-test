@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+      .cross {
+      fill: #000
+      }
+    </style>
+  </defs>
+  <g id="Group_3755" data-name="Group 3755" transform="translate(-165.932 -628.932)">
+    <circle id="Ellipse_126" data-name="Ellipse 126" class="cls-1" cx="24" cy="24" r="24" transform="translate(165.932 628.932)"/>
+    <path class="cross" id="Icon_material-close" data-name="Icon material-close" d="M24.163,9.178,22.484,7.5l-6.653,6.653L9.178,7.5,7.5,9.178l6.653,6.653L7.5,22.484l1.678,1.678,6.653-6.653,6.653,6.653,1.678-1.678-6.653-6.653Z" transform="translate(174.431 637.432)"/>
+  </g>
+</svg>
