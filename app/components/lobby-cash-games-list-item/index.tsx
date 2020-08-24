@@ -5,12 +5,19 @@ import Presets from './lobby-cash-games-list-item.presets'
 import {LobbyCashGamesListItemProps} from './lobby-cash-games-list-item.props'
 import CardView from 'react-native-cardview'
 import Ripple from 'react-native-material-ripple'
+import * as Animatable from 'react-native-animatable'
 
 export const LobbyCashGamesListItem: React.FunctionComponent<LobbyCashGamesListItemProps> = (props) => {
   const {item, onTap} = props
 
   return (
-    <View style={styles.Wrapper}>
+    <Animatable.View
+      animation={item.animate === 'left' ? 'fadeOutLeft' : 'fadeInRight'}
+      iterationCount={1}
+      duration={500}
+      direction="alternate"
+      onAnimationEnd={props.animationEnd(true)}
+      style={styles.Wrapper}>
       <CardView
         style={{marginHorizontal: 16, marginVertical: 12}}
         cornerOverlap={true}
@@ -56,6 +63,6 @@ export const LobbyCashGamesListItem: React.FunctionComponent<LobbyCashGamesListI
         <Text style={styles.GameTypeBadgeText}>{item && item.gameVariant.toUpperCase()}</Text>
       </View>
       {/* <Placeholder style={styles.GameTypeBadge} width={60} height={20} visible={loading}/> */}
-    </View>
+    </Animatable.View>
   )
 }

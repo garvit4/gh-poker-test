@@ -25,9 +25,7 @@ const LobbyCashGames: FunctionComponent<LobbyCashGamesProps> = (_props) => {
 
   const filters = ['Texas', 'PLO', 'Low', 'Mid', 'High']
 
-  const handleItemTap = (_e: GestureResponderEvent, _item: any) => {
-    // console.warn('>>>', e, item);
-  }
+  const handleItemTap = (_e: GestureResponderEvent, _item: any) => {}
 
   const getBlindsFilteredResult = (filteredArray, titlesArr) => {
     if (!titlesArr.includes('low') && !titlesArr.includes('mid') && !titlesArr.includes('high')) {
@@ -58,13 +56,56 @@ const LobbyCashGames: FunctionComponent<LobbyCashGamesProps> = (_props) => {
     })
   }
 
+  const getAnimatedTypeList = (gameTypeFilteredResult) => {
+    let nextList = JSON.parse(JSON.stringify(gameTypeFilteredResult))
+    let currentList = JSON.parse(JSON.stringify(filteredList))
+    if (JSON.stringify(currentList) === JSON.stringify(nextList)) {
+      return currentList
+    } else {
+      nextList.forEach((nextListItem) => {
+        nextListItem.animate = 'right'
+        currentList.forEach((currentListItem) => {
+          if (!currentListItem.hasOwnProperty('found')) {
+            currentListItem.animate = 'left'
+          }
+          if (nextListItem.id === currentListItem.id) {
+            nextListItem.found = true
+            currentListItem.found = true
+            currentListItem.animate = 'none'
+          }
+        })
+      })
+      if (nextList.length) {
+        nextList.forEach((item) => {
+          if (!item.hasOwnProperty('found')) {
+            currentList.push(item)
+          }
+        })
+      }
+      return currentList
+    }
+  }
+
   const onFilterPress = (filter) => {
     const titlesArr = filter.map((item) => item.title.toLowerCase())
     const gameTypeFilteredResult = getGameTypeFilteredResult(titlesArr)
-    setFilteredList(gameTypeFilteredResult)
+    setFilteredList(getAnimatedTypeList(gameTypeFilteredResult))
     if (titlesArr.includes('low') || titlesArr.includes('mid') || titlesArr.includes('high')) {
       const blindsFilteredResult = getBlindsFilteredResult(gameTypeFilteredResult, titlesArr)
-      setFilteredList(blindsFilteredResult)
+      setFilteredList(getAnimatedTypeList(blindsFilteredResult))
+    }
+  }
+
+  const checkAnimationStatus = (bool) => {
+    if (bool) {
+      filteredList.forEach((item, index) => {
+        if (item.animate === 'left') {
+          filteredList.splice(index, 1)
+        } else {
+          delete item.animatable
+          delete item.found
+        }
+      })
     }
   }
 
@@ -88,8 +129,14 @@ const LobbyCashGames: FunctionComponent<LobbyCashGamesProps> = (_props) => {
         <View style={styles.PanelContainer}>
           <LobbyCashGamesFilter filters={filters} onFilterPress={onFilterPress} />
         </View>
+
         <View style={styles.ListContainer}>
-          <LobbyCashGamesList list={filteredList} loading={false} onTap={handleItemTap} />
+          <LobbyCashGamesList
+            checkAnimation={checkAnimationStatus}
+            list={filteredList}
+            loading={false}
+            onTap={handleItemTap}
+          />
         </View>
       </View>
     </SafeAreaView>

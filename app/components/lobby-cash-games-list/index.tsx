@@ -28,11 +28,19 @@ export const LobbyCashGamesList: React.FunctionComponent<LobbyCashGamesListProps
       opacity.setValue(1)
     }
   }
+  const checkAnimationDone = (bool) => {
+    props.checkAnimation(bool)
+  }
 
   const _renderListItem = ({item}) => {
     return (
       <Animated.View>
-        <LobbyCashGamesListItem item={item} loading={loading} onTap={(e) => !loading && onTap && onTap(e, item)} />
+        <LobbyCashGamesListItem
+          animationEnd={checkAnimationDone}
+          item={item}
+          loading={loading}
+          onTap={(e) => !loading && onTap && onTap(e, item)}
+        />
       </Animated.View>
     )
   }
