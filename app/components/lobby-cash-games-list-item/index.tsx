@@ -1,23 +1,45 @@
-import React from 'react'
-import {Image, Text, View} from 'react-native'
+import React, {useState, useEffect} from 'react'
+import {Image, Text, View, Animated, Easing, Dimensions} from 'react-native'
 import {lobbyCashGamesListItemStyles as styles} from './lobby-cash-games-list-item.styles'
 import Presets from './lobby-cash-games-list-item.presets'
 import {LobbyCashGamesListItemProps} from './lobby-cash-games-list-item.props'
 import CardView from 'react-native-cardview'
 import Ripple from 'react-native-material-ripple'
-import * as Animatable from 'react-native-animatable'
+var {width} = Dimensions.get('window')
 
 export const LobbyCashGamesListItem: React.FunctionComponent<LobbyCashGamesListItemProps> = (props) => {
   const {item, onTap} = props
 
+  const [leftXValue] = useState(new Animated.Value(0))
+  const [rightXValue] = useState(new Animated.Value(width))
+  const [animateType, setAnimateType] = useState({})
+
+  const _leftAnimation = () => {
+    Animated.timing(leftXValue, {
+      toValue: width,
+      duration: 500,
+      easing: Easing.linear,
+    }).start()
+  }
+  const _rightAnimation = () => {
+    Animated.timing(rightXValue, {
+      toValue: 0,
+      duration: 500,
+      easing: Easing.linear,
+    }).start()
+  }
+  useEffect(() => {
+    if (item.animate === 'left') {
+      setAnimateType({right: leftXValue})
+      _leftAnimation()
+    } else if (item.animate === 'right') {
+      setAnimateType({left: rightXValue})
+      _rightAnimation()
+    }
+  }, [item.animate])
+
   return (
-    <Animatable.View
-      animation={item.animate === 'left' ? 'fadeOutLeft' : 'fadeInRight'}
-      iterationCount={1}
-      duration={500}
-      direction="alternate"
-      onAnimationEnd={props.animationEnd(true)}
-      style={styles.Wrapper}>
+    <Animated.View onAnimationEnd={props.animationEnd(true)} style={[styles.Wrapper, animateType]}>
       <CardView
         style={{marginHorizontal: 16, marginVertical: 12}}
         cornerOverlap={true}
@@ -63,6 +85,6 @@ export const LobbyCashGamesListItem: React.FunctionComponent<LobbyCashGamesListI
         <Text style={styles.GameTypeBadgeText}>{item && item.gameVariant.toUpperCase()}</Text>
       </View>
       {/* <Placeholder style={styles.GameTypeBadge} width={60} height={20} visible={loading}/> */}
-    </Animatable.View>
+    </Animated.View>
   )
 }
