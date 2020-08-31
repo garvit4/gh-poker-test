@@ -5,36 +5,31 @@ import Presets from './lobby-cash-games-list-item.presets'
 import {LobbyCashGamesListItemProps} from './lobby-cash-games-list-item.props'
 import CardView from 'react-native-cardview'
 import Ripple from 'react-native-material-ripple'
-var {width} = Dimensions.get('window')
+const {width} = Dimensions.get('window')
 
 export const LobbyCashGamesListItem: React.FunctionComponent<LobbyCashGamesListItemProps> = (props) => {
   const {item, onTap} = props
-
-  const [leftXValue] = useState(new Animated.Value(0))
-  const [rightXValue] = useState(new Animated.Value(width))
+  const leftXValue = new Animated.Value(0)
+  const rightXValue = new Animated.Value(width)
+  const animationDuration = 500
   const [animateType, setAnimateType] = useState({})
 
-  const _leftAnimation = () => {
-    Animated.timing(leftXValue, {
-      toValue: width,
-      duration: 500,
+  const _animation = (xValue, xWidth) => {
+    console.log(xWidth, 'x Widtyhhh>>>')
+    Animated.timing(xValue, {
+      toValue: xWidth,
+      duration: animationDuration,
       easing: Easing.linear,
-    }).start()
-  }
-  const _rightAnimation = () => {
-    Animated.timing(rightXValue, {
-      toValue: 0,
-      duration: 500,
-      easing: Easing.linear,
+      useNativeDriver: true,
     }).start()
   }
   useEffect(() => {
     if (item.animate === 'left') {
-      setAnimateType({right: leftXValue})
-      _leftAnimation()
+      setAnimateType({transform: [{translateX: leftXValue}]})
+      _animation(leftXValue, -width)
     } else if (item.animate === 'right') {
-      setAnimateType({left: rightXValue})
-      _rightAnimation()
+      setAnimateType({transform: [{translateX: rightXValue}]})
+      _animation(rightXValue, 0)
     }
   }, [item.animate])
 
