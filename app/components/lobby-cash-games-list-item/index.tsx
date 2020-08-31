@@ -14,22 +14,27 @@ export const LobbyCashGamesListItem: React.FunctionComponent<LobbyCashGamesListI
   const animationDuration = 500
   const [animateType, setAnimateType] = useState({})
 
-  const _animation = (xValue, xWidth) => {
-    console.log(xWidth, 'x Widtyhhh>>>')
-    Animated.timing(xValue, {
-      toValue: xWidth,
+  const _leftAnimation = () => {
+    Animated.timing(leftXValue, {
+      toValue: width,
       duration: animationDuration,
       easing: Easing.linear,
-      useNativeDriver: true,
+    }).start()
+  }
+  const _rightAnimation = () => {
+    Animated.timing(rightXValue, {
+      toValue: 0,
+      duration: animationDuration,
+      easing: Easing.linear,
     }).start()
   }
   useEffect(() => {
     if (item.animate === 'left') {
-      setAnimateType({transform: [{translateX: leftXValue}]})
-      _animation(leftXValue, -width)
+      setAnimateType({right: leftXValue})
+      _leftAnimation()
     } else if (item.animate === 'right') {
-      setAnimateType({transform: [{translateX: rightXValue}]})
-      _animation(rightXValue, 0)
+      setAnimateType({left: rightXValue})
+      _rightAnimation()
     }
   }, [item.animate])
 
